@@ -4,8 +4,8 @@
   "tagName": "Purpose",
   "tagValue": "CDK-CICD-ALL",
   "namePrefix": "cdk-cicd",
-  "cidrRangeTest": "10.132.0.0/16",
-  "cidrRangeProd": "10.133.0.0/16",
+  "cidrRangeTest": "10.135.0.0/16",
+  "cidrRangeProd": "10.136.0.0/16",
   "availability-zones:account=889867566972:region=us-east-1": [
     "us-east-1a",
     "us-east-1b",
