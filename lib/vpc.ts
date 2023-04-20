@@ -1,13 +1,14 @@
 import * as cdk from 'aws-cdk-lib';
+import { Construct } from "constructs";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 
 
-export class VPCStack extends cdk.Stack {
+export class VPCStack extends cdk.Stack {  
 
     public readonly VPC : ec2.Vpc;
     public readonly rdsEP : ec2.InterfaceVpcEndpoint;
 
-    constructor(scope : cdk.App, id : string, props : cdk.StackProps) {
+    constructor(scope : Construct, id : string, stageName: string, props? : cdk.StackProps) {
         super(scope, id, props);
 
         const subnetPrivate: ec2.SubnetConfiguration = {
@@ -22,13 +23,19 @@ export class VPCStack extends cdk.Stack {
             cidrMask: 24
         }
 
+        let cidr = "";
+        if (stageName == "test") {
+          cidr = this.node.tryGetContext("cidrRangeTest")
+        } else {
+          cidr = this.node.tryGetContext("cidrRangeProd")
+        }
 
         const vpc = new ec2.Vpc(
             this, 
             this.node.tryGetContext("namePrefix") + "-vpc",
             {
                 maxAzs: 3,
-                ipAddresses: ec2.IpAddresses.cidr(this.node.tryGetContext("cidrRange")),
+                ipAddresses: ec2.IpAddresses.cidr(cidr),
                 subnetConfiguration: [subnetPrivate, subnetPublic],
                 natGatewayProvider: ec2.NatProvider.gateway(),
                 natGateways: 1

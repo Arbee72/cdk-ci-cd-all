@@ -14,17 +14,17 @@ const tagname = app.node.tryGetContext("tagName");
 const tagvalue = app.node.tryGetContext("tagValue");
 
 
-const myVPCStack = new VPCStack(app, "myVPCStack", {
-  env: { account: account, region: region },
-  stackName: "cicd-VPCStack"
-});
-cdk.Tags.of(myVPCStack).add(tagname,tagvalue);
+//const myVPCStack = new VPCStack(app, "myVPCStack", {
+  //env: { account: account, region: region },
+  //stackName: "cicd-VPCStack"
+//});
+//cdk.Tags.of(myVPCStack).add(tagname,tagvalue);
 
 const myCICDPipelineStack = new CICDPipelineStack(app, "myCICDPipelineStack", {
   env: { account: account, region: region },
   stackName: "cicd-CICDStack"
 });
-cdk.Tags.of(myVPCStack).add(tagname,tagvalue);
+cdk.Tags.of(myCICDPipelineStack).add(tagname,tagvalue);
 
 
 
