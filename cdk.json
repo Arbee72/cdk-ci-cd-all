@@ -1,5 +1,7 @@
 {
   "app": "npx ts-node --prefer-ts-exts bin/cdk-ci-cd-all.ts",
+  "profile": "du",
+  "requireApproval": "never",
   "watch": {
     "include": [
       "**"
