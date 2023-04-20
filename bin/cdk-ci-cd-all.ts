@@ -2,6 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import {VPCStack} from "../lib/vpc";
+import {CICDPipelineStack} from "../lib/ci-cd-pipeline";
 
 import console = require("console");
 
@@ -15,6 +16,16 @@ const tagvalue = app.node.tryGetContext("tagValue");
 
 const myVPCStack = new VPCStack(app, "myVPCStack", {
   env: { account: account, region: region },
-  stackName: "ohdsi-VPCStack"
+  stackName: "cicd-VPCStack"
 });
 cdk.Tags.of(myVPCStack).add(tagname,tagvalue);
+
+const myCICDPipelineStack = new CICDPipelineStack(app, "myCICDPipelineStack", {
+  env: { account: account, region: region },
+  stackName: "cicd-CICDStack"
+});
+cdk.Tags.of(myVPCStack).add(tagname,tagvalue);
+
+
+
+app.synth();
