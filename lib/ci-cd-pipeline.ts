@@ -31,7 +31,7 @@ export class CICDPipelineStack extends cdk.Stack {
         testingStage.addPost(new pipelines.ManualApprovalStep('Manual approval before deploying in Production'));
 
         const prodStage = pipeline.addStage(new PipelineStage(this, "prodStage", "prod", {
-            env: { account: this.node.tryGetContext("accountProd"), region: this.node.tryGetContext("region")}
+            env: { account: this.node.tryGetContext("account"), region: this.node.tryGetContext("region")}
         }));
         
     }

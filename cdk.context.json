@@ -1,6 +1,5 @@
 {
   "account": "889867566972",
-  "accountProd": "820047830776",
   "region": "us-east-1",
   "tagName": "Purpose",
   "tagValue": "CDK-CICD-ALL",
