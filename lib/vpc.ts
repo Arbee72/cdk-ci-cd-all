@@ -38,7 +38,7 @@ export class VPCStack extends cdk.Stack {
                 ipAddresses: ec2.IpAddresses.cidr(cidr),
                 subnetConfiguration: [subnetPrivate, subnetPublic],
                 natGatewayProvider: ec2.NatProvider.gateway(),
-                natGateways: 1
+                natGateways: 2
             }
         )
 
